@@ -20,10 +20,32 @@
     </form>
 
     <div id="forecast"> 
-        <h3 class="widget"> Temp</h3>
-        <br>
-        <h3 class="widget"> Sky Conditions</h3>
+        <section class="widget"> 
+            <h3>Temperature</h3>
+            <button id="realtime" type="button">Get Realtime Temperature</button>
+            <button class="arrows"> ⬆️ </button>
+            <p id="big_temp">75</p>
+            <button class="arrows"> ⬇️ </button>
 
+        </section>
+        <br>
+        <section class="widget"> 
+            <h3> Sky Conditions</h3>
+            <select name="sky" id="sky">
+                <option value="sunny">Sunny</option>
+                <option value="cloudy">Cloudy</option>
+                <option value="rainy">Rainy</option>
+                <option value="snowy">Snowy</option>
+            </select>
+        </section>
+    </div>
+
+    <div id="garden">
+        <p>🌤🌤🌤🌤</p>
+        <br>
+        <br>
+        <br>
+        <p>🌴🌴🌴🌴</p>
     </div>
 
     
