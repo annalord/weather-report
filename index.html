@@ -24,9 +24,9 @@
             <section class="widget"> 
                 <h3>Temperature</h3>
                 <button id="realtime" type="button">Get Realtime Temperature</button>
-                <button class="arrows"> ⬆️ </button>
+                <button class="arrows" id="up_arrow"> ⬆️ </button>
                 <p id="big_temp">75</p>
-                <button class="arrows"> ⬇️ </button>
+                <button class="arrows" id="down_arrow"> ⬇️ </button>
     
             </section>
             <br>
@@ -55,11 +55,11 @@
         <br>
         <br>
         <div id="garden">
-            <p>🌤🌤🌤🌤</p>
+            <p id="sky">🌤🌤🌤🌤</p>
             <br>
             <br>
             <br>
-            <p>🌴🌴🌴🌴</p>
+            <p id="landscape">🌴🌴🌴🌴</p>
         </div>
     </section2>
     
@@ -70,5 +70,6 @@
 
     
     <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./src/index.js"></script>
 </body>
 </html>
