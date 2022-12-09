@@ -8,45 +8,62 @@
     <link href="styles/index.css" rel="stylesheet">
 </head>
 <body>
-    <div id="title">
-        <h1> Weather Report</h1>
-        <h2> for Seattle</h2>
-    </div>
-    <form id="search">
-        <h3> Please enter your city:</h3>
-        <input type="text"><br>
+    <section id="container">
+        <div id="title">
+            <h1> Weather Report</h1>
+            <h2> for Seattle</h2>
+        </div>
+        <form id="search">
+            <h3> Please enter your city:</h3>
+            <input type="text"><br>
+            <br>
+            <input type="submit" value="Reset">
+        </form>
+    
+        <div id="forecast"> 
+            <section class="widget"> 
+                <h3>Temperature</h3>
+                <button id="realtime" type="button">Get Realtime Temperature</button>
+                <button class="arrows"> ⬆️ </button>
+                <p id="big_temp">75</p>
+                <button class="arrows"> ⬇️ </button>
+    
+            </section>
+            <br>
+            <section class="widget"> 
+                <h3> Sky Conditions</h3>
+                <select name="sky" id="sky">
+                    <option value="sunny">Sunny</option>
+                    <option value="cloudy">Cloudy</option>
+                    <option value="rainy">Rainy</option>
+                    <option value="snowy">Snowy</option>
+                </select>
+            </section>
+            
+        </div>
+        
+    </section >
+    <section>
         <br>
-        <input type="submit" value="Reset">
-    </form>
-
-    <div id="forecast"> 
-        <section class="widget"> 
-            <h3>Temperature</h3>
-            <button id="realtime" type="button">Get Realtime Temperature</button>
-            <button class="arrows"> ⬆️ </button>
-            <p id="big_temp">75</p>
-            <button class="arrows"> ⬇️ </button>
-
-        </section>
-        <br>
-        <section class="widget"> 
-            <h3> Sky Conditions</h3>
-            <select name="sky" id="sky">
-                <option value="sunny">Sunny</option>
-                <option value="cloudy">Cloudy</option>
-                <option value="rainy">Rainy</option>
-                <option value="snowy">Snowy</option>
-            </select>
-        </section>
-    </div>
-
-    <div id="garden">
-        <p>🌤🌤🌤🌤</p>
         <br>
         <br>
         <br>
-        <p>🌴🌴🌴🌴</p>
-    </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="garden">
+            <p>🌤🌤🌤🌤</p>
+            <br>
+            <br>
+            <br>
+            <p>🌴🌴🌴🌴</p>
+        </div>
+    </section2>
+    
+    
 
     
 

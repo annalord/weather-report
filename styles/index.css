@@ -1,11 +1,14 @@
-body {
-    background-color: pink;
+#container {
     display: grid;
     grid-template-rows: 25% 25% 25% 25%;
     width: 100vw;
-    height: 100vh;
+    height: 60vh;
     margin: 0;
     font-family: "PT Sans", Calibri, Tahoma, sans-serif;
+    row-gap: 80px;
+}
+body {
+    background-color: pink;
 }
 
 #title {
@@ -40,17 +43,7 @@ body {
     margin: auto;
 }
 
-#garden {
-    grid-row: 4/5;
-    background-color: aqua;
-    text-align: center;
-    margin: auto;
-    padding: 2em;
-    border-radius: 25px;
-    border: 1px solid black;
-    width: 40vw;
-    height: 20vh;
-}
+
 
 .widget{
     border: 1px solid black; 
@@ -84,4 +77,16 @@ body {
     margin-right: auto;
     background-color: transparent;
     border: none;
+}
+
+#garden {
+    background-color: aqua;
+    text-align: center;
+    margin: auto;
+    padding: 2em;
+    border-radius: 25px;
+    border: 1px solid black;
+    width: 40vw;
+    height: 20vh;
+    
 }
