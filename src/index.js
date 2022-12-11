@@ -1,7 +1,5 @@
 'use strict';
 
-// const axios = require('axios');
-
 const state = {
   temp: 75,
 };
@@ -87,23 +85,19 @@ const getTemperature = (latitude, longitude) => {
     });
 };
 
-const pickSky = (event) => {
-  const skyChoice = document.querySelector('#sky').value
+const pickSky = () => {
+  const skyChoice = document.querySelector('#sky').value;
   const skyDisplay = document.querySelector('#skyDisplay');
-  if (skyChoice === 'Sunny' ){
-    skyDisplay.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
+  if (skyChoice === 'Sunny') {
+    skyDisplay.textContent = '☁️ ☁️ ☁️ ☀️ ☁️ ☁️';
+  } else if (skyChoice === 'Cloudy') {
+    skyDisplay.textContent = '☁️☁️ ☁️ ☁️☁️ ☁️ 🌤 ☁️ ☁️☁️';
+  } else if (skyChoice === 'Rainy') {
+    skyDisplay.textContent = '🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧';
+  } else if (skyChoice === 'Snowy') {
+    skyDisplay.textContent = '🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨';
   }
-
-  else if (skyChoice === 'Cloudy' ){
-    skyDisplay.textContent = "☁️☁️ ☁️ ☁️☁️ ☁️ 🌤 ☁️ ☁️☁️";
-  }
-  else if (skyChoice === 'Rainy'){
-    skyDisplay.textContent = "🌧🌈⛈🌧🌧💧⛈🌧🌦🌧💧🌧🌧";
-  }
-  else if (skyChoice === 'Snowy'){
-    skyDisplay.textContent = "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨";
-  }
-}
+};
 
 const registerEventHandlers = (event) => {
   const upButton = document.querySelector('#up_arrow');
@@ -118,15 +112,9 @@ const registerEventHandlers = (event) => {
   const realTime = document.querySelector('#realtime');
   realTime.addEventListener('click', getLatLon);
 
-  const selectSky = document.querySelector('#sky')
-  selectSky.addEventListener('change', pickSky)
+  const selectSky = document.querySelector('#sky');
+  selectSky.addEventListener('change', pickSky);
 };
 
 document.addEventListener('DOMContentLoaded', registerEventHandlers);
 
-{/* <select name="sky" id="sky">
-                    <option value="sunny">Sunny</option>
-                    <option value="cloudy">Cloudy</option>
-                    <option value="rainy">Rainy</option>
-                    <option value="snowy">Snowy</option>
-                </select> */}
