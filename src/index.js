@@ -4,39 +4,42 @@ const state = {
   temp: 75,
 };
 
-const increaseTemp = () => {
-  state.temp += 1;
+const changeTemp = () => {
+  //helper function
   const bigTempContainer = document.querySelector('#big_temp');
   bigTempContainer.textContent = `${state.temp}`;
+  const body = document.body;
 
-  changeTempColor(bigTempContainer);
+  changeTempColor(body);
+};
+
+const increaseTemp = () => {
+  state.temp += 1;
+  changeTemp();
 };
 
 const decreaseTemp = () => {
   state.temp -= 1;
-  const bigTempContainer = document.querySelector('#big_temp');
-  bigTempContainer.textContent = `${state.temp}`;
-
-  changeTempColor(bigTempContainer);
+  changeTemp();
 };
 
-const changeTempColor = (bigTempContainer) => {
+const changeTempColor = (body) => {
   const landscape = document.querySelector('#landscape');
 
   if (state.temp > 80) {
-    bigTempContainer.className = 'hot';
+    body.className = 'hot';
     landscape.textContent = '🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂';
   } else if (state.temp > 70) {
-    bigTempContainer.className = 'warm';
+    body.className = 'warm';
     landscape.textContent = '🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷';
   } else if (state.temp > 60) {
-    bigTempContainer.className = 'moderate';
+    body.className = 'moderate';
     landscape.textContent = '🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃';
   } else if (state.temp > 50) {
-    bigTempContainer.className = 'cold';
+    body.className = 'cold';
     landscape.textContent = '🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲';
   } else {
-    bigTempContainer.className = 'very-cold';
+    body.className = 'very-cold';
     landscape.textContent = '🏔❄️☃️⛷🏔❄️☃️⛷🏔❄️☃️⛷';
   }
 };
@@ -44,7 +47,7 @@ const changeTempColor = (bigTempContainer) => {
 const changeCity = (input) => {
   const newCity = document.querySelector('#city').value;
   const cityContainer = document.querySelector('#city-container');
-  cityContainer.textContent = newCity;
+  cityContainer.textContent = `for ${newCity}`;
 };
 
 const getLatLon = () => {
@@ -60,7 +63,7 @@ const getLatLon = () => {
       const longitude = response.data[0].lon;
       getTemperature(latitude, longitude);
     })
-    .catch((error) => {
+    .catch(() => {
       console.log('Error with getLatLon');
     });
 };
@@ -79,8 +82,9 @@ const getTemperature = (latitude, longitude) => {
       state.temp = fahrenheitTemp;
       const bigTemp = document.querySelector('#big_temp');
       bigTemp.textContent = `${state.temp}`;
+      changeTempColor(document.body);
     })
-    .catch((error) => {
+    .catch(() => {
       console.log('Error with getTemperature');
     });
 };
@@ -99,22 +103,29 @@ const pickSky = () => {
   }
 };
 
-const registerEventHandlers = (event) => {
+const registerEventHandlers = () => {
   const upButton = document.querySelector('#up_arrow');
   upButton.addEventListener('click', increaseTemp);
-
-  const input = document.querySelector('input');
-  input.addEventListener('input', changeCity);
 
   const downButton = document.querySelector('#down_arrow');
   downButton.addEventListener('click', decreaseTemp);
 
+  const input = document.querySelector('input');
+  input.addEventListener('input', changeCity);
+
   const realTime = document.querySelector('#realtime');
   realTime.addEventListener('click', getLatLon);
+
+  input.addEventListener('keypress', (event) => {
+    // to get realtime upon hitting enter
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      document.querySelector('#realtime').click();
+    }
+  });
 
   const selectSky = document.querySelector('#sky');
   selectSky.addEventListener('change', pickSky);
 };
 
 document.addEventListener('DOMContentLoaded', registerEventHandlers);
-
