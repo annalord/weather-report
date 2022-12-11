@@ -1,6 +1,6 @@
 'use strict';
 
-const axios = require('axios');
+// const axios = require('axios');
 
 const state = {
   temp: 75,
@@ -42,44 +42,63 @@ const changeTempColor = (bigTempContainer) => {
     landscape.textContent = '🏔❄️☃️⛷🏔❄️☃️⛷🏔❄️☃️⛷';
   }
 };
+
 const changeCity = (input) => {
   const newCity = document.querySelector('#city').value;
   const cityContainer = document.querySelector('#city-container');
   cityContainer.textContent = newCity;
 };
 
-
-
 const getLatLon = () => {
   const newCity = document.querySelector('#city').value;
-  axios.get('http://localhost:5000', {
-    params: {
-      q: newCity
-    }
-  })
-  .then((response) => {
-    const latitude = response.data[0].lat;
-    const longitude = response.data[0].lon;
-    getWeather(latitude,longitude)
-  })
+  axios
+    .get('http://Localhost:5000/location', {
+      params: {
+        q: newCity,
+      },
+    })
+    .then((response) => {
+      const latitude = response.data[0].lat;
+      const longitude = response.data[0].lon;
+      getTemperature(latitude, longitude);
+    })
+    .catch((error) => {
+      console.log('Error with getLatLon');
+    });
+};
 
-
-  .catch((error) => {
-    console.log('Error with something ')
-  } )
-
-}
+const getTemperature = (latitude, longitude) => {
+  axios
+    .get('http://Localhost:5000/weather', {
+      params: {
+        lat: latitude,
+        lon: longitude,
+      },
+    })
+    .then((response) => {
+      const temperature = response.data.main.temp;
+      const fahrenheitTemp = Math.round((9 / 5) * (temperature - 273) + 32);
+      state.temp = fahrenheitTemp;
+      const bigTemp = document.querySelector('#big_temp');
+      bigTemp.textContent = `${state.temp}`;
+    })
+    .catch((error) => {
+      console.log('Error with getTemperature');
+    });
+};
 
 const registerEventHandlers = (event) => {
   const upButton = document.querySelector('#up_arrow');
   upButton.addEventListener('click', increaseTemp);
 
-  const input = document.querySelector('input')
+  const input = document.querySelector('input');
   input.addEventListener('input', changeCity);
 
   const downButton = document.querySelector('#down_arrow');
   downButton.addEventListener('click', decreaseTemp);
+
+  const realTime = document.querySelector('#realtime');
+  realTime.addEventListener('click', getLatLon);
 };
 
 document.addEventListener('DOMContentLoaded', registerEventHandlers);
-
